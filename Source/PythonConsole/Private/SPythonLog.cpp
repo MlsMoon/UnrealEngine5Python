@@ -8,7 +8,10 @@
 #include "Runtime/Slate/Public/Widgets/Input/SSearchBox.h"
 #include "Runtime/Launch/Resources/Version.h"
 #include "Runtime/Slate/Public/Framework/Text/SlateTextLayout.h"
-#include "Editor/EditorStyle/Public/Classes/EditorStyleSettings.h"
+
+//modify for ue5.1.1
+#include "Editor/EditorStyle/Public/EditorStyleSet.h"
+
 #include "SlateBasics.h"
 #include "EditorStyle.h"
 
