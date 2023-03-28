@@ -1950,7 +1950,10 @@ UClass* unreal_engine_new_uclass(char* name, UClass* outer_parent)
 		new_object->ClearFunctionMapsCaches();
 		new_object->PurgeClass(true);
 		new_object->Children = nullptr;
-		new_object->ClassAddReferencedObjects = parent->ClassAddReferencedObjects;
+
+		//modify for ue5.1.1
+		//new_object->ClassAddReferencedObjects = parent->ClassAddReferencedObjects;
+
 		// NOTA BENE we may need to do something with ChildProperties now
 		// as apparently the previous Children list now split into 2 lists
 		// with properties in ChildProperties

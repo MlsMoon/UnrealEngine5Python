@@ -1,5 +1,5 @@
 #include "UEPyAnimSequence.h"
-
+#include "AnimationUtils.h"
 
 PyObject *py_ue_anim_get_skeleton(ue_PyUObject * self, PyObject * args)
 {
@@ -64,9 +64,14 @@ PyObject *py_ue_anim_extract_bone_transform(ue_PyUObject * self, PyObject * args
 	ue_PyFRawAnimSequenceTrack *rast = py_ue_is_fraw_anim_sequence_track(py_sources);
 	if (rast)
 	{
+		
 		FTransform OutAtom;
-		anim->ExtractBoneTransform(rast->raw_anim_sequence_track, OutAtom, frame_time);
+		FAnimationUtils::ExtractTransformForFrameFromTrack(rast->raw_anim_sequence_track, frame_time, OutAtom);
 
+		//↓old version
+		//anim->ExtractBoneTransform(rast->raw_anim_sequence_track, OutAtom, frame_time);
+		
+		
 		return py_ue_new_ftransform(OutAtom);
 	}
 
@@ -131,12 +136,13 @@ PyObject *py_ue_anim_sequence_get_raw_animation_data(ue_PyUObject * self, PyObje
 
 	PyObject *py_list = PyList_New(0);
 
-	for (FRawAnimSequenceTrack rast : anim_seq->GetRawAnimationData())
-	{
-		PyObject *py_item = py_ue_new_fraw_anim_sequence_track(rast);
-		PyList_Append(py_list, py_item);
-		Py_DECREF(py_item);
-	}
+	//modify for ue5.1.1
+	// for (FRawAnimSequenceTrack rast : anim_seq->GetRawAnimationData())
+	// {
+	// 	PyObject *py_item = py_ue_new_fraw_anim_sequence_track(rast);
+	// 	PyList_Append(py_list, py_item);
+	// 	Py_DECREF(py_item);
+	// }
 
 	return py_list;
 }
