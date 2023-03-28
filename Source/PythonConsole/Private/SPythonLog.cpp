@@ -465,11 +465,13 @@ bool SPythonLog::CreateLogMessages(const TCHAR* V, ELogVerbosity::Type Verbosity
 
 		// Determine how to format timestamps
 		static ELogTimes::Type LogTimestampMode = ELogTimes::None;
-		if (UObjectInitialized() && !GExitPurge)
-		{
-			// Logging can happen very late during shutdown, even after the UObject system has been torn down, hence the init check above
-			LogTimestampMode = GetDefault<UEditorStyleSettings>()->LogTimestampMode;
-		}
+
+		//modify for ue5.1.1
+		// if (UObjectInitialized() && !GExitPurge)
+		// {
+		// 	// Logging can happen very late during shutdown, even after the UObject system has been torn down, hence the init check above
+		// 	LogTimestampMode = GetDefault<FEditorStyle>()->LogTimestampMode;
+		// }
 
 		const int32 OldNumMessages = OutMessages.Num();
 
