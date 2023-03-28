@@ -1,6 +1,10 @@
 // Copyright 1998-2016 Epic Games, Inc. All Rights Reserved.
 
 #include "PythonConsoleModule.h"
+
+//Modify for ue5.1.1
+#include "EditorStyleSet.h"
+
 #include "SPythonConsole.h"
 #include "SPythonLog.h"
 #include "Editor/WorkspaceMenuStructure/Public/WorkspaceMenuStructureModule.h"
