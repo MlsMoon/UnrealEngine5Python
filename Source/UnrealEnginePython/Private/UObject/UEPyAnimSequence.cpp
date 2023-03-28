@@ -159,10 +159,14 @@ PyObject *py_ue_anim_sequence_get_raw_animation_track(ue_PyUObject * self, PyObj
 	if (!anim_seq)
 		return PyErr_Format(PyExc_Exception, "UObject is not a UAnimSequence.");
 
-	if (index < 0 || index >= anim_seq->GetAnimationTrackNames().Num())
-		return PyErr_Format(PyExc_Exception, "invalid track index %d", index);
+	
+	//
+	// if (index < 0 || index >= anim_seq->GetAnimationTrackNames().Num())
+	// 	return PyErr_Format(PyExc_Exception, "invalid track index %d", index);
+	//
+	// return py_ue_new_fraw_anim_sequence_track(anim_seq->GetRawAnimationTrack(index));
 
-	return py_ue_new_fraw_anim_sequence_track(anim_seq->GetRawAnimationTrack(index));
+	return nullptr;
 }
 
 PyObject *py_ue_anim_add_key_to_sequence(ue_PyUObject * self, PyObject * args)
@@ -196,12 +200,12 @@ PyObject *py_ue_anim_sequence_apply_raw_anim_changes(ue_PyUObject * self, PyObje
 	if (!anim_seq)
 		return PyErr_Format(PyExc_Exception, "UObject is not a UAnimSequence.");
 
-
-	if (anim_seq->DoesNeedRebake())
-	{
-		anim_seq->Modify(true);
-		anim_seq->BakeTrackCurvesToRawAnimation();
-	}
+	//
+	// if (anim_seq->DoesNeedRebake())
+	// {
+	// 	anim_seq->Modify(true);
+	// 	anim_seq->BakeTrackCurvesToRawAnimation();
+	// }
 
 	if (anim_seq->DoesNeedRecompress())
 	{
@@ -244,12 +248,14 @@ PyObject *py_ue_anim_sequence_add_new_raw_track(ue_PyUObject * self, PyObject * 
 
 	anim_seq->Modify();
 
-	int32 index = anim_seq->AddNewRawTrack(FName(UTF8_TO_TCHAR(name)), rast);
+	// int32 index = anim_seq->AddNewRawTrack(FName(UTF8_TO_TCHAR(name)), rast);
 
 	anim_seq->MarkRawDataAsModified();
 	anim_seq->MarkPackageDirty();
 
-	return PyLong_FromLong(index);
+	// return PyLong_FromLong(index);
+
+	return nullptr;
 }
 
 PyObject *py_ue_anim_sequence_update_raw_track(ue_PyUObject * self, PyObject * args)
@@ -273,11 +279,11 @@ PyObject *py_ue_anim_sequence_update_raw_track(ue_PyUObject * self, PyObject * a
 
 	anim_seq->Modify();
 
-	FRawAnimSequenceTrack& RawRef = anim_seq->GetRawAnimationTrack(track_index);
+	//FRawAnimSequenceTrack& RawRef = anim_seq->GetRawAnimationTrack(track_index);
 
-	RawRef.PosKeys = py_f_rast->raw_anim_sequence_track.PosKeys;
-	RawRef.RotKeys = py_f_rast->raw_anim_sequence_track.RotKeys;
-	RawRef.ScaleKeys = py_f_rast->raw_anim_sequence_track.ScaleKeys;
+	//RawRef.PosKeys = py_f_rast->raw_anim_sequence_track.PosKeys;
+	//RawRef.RotKeys = py_f_rast->raw_anim_sequence_track.RotKeys;
+	//RawRef.ScaleKeys = py_f_rast->raw_anim_sequence_track.ScaleKeys;
 
 	anim_seq->MarkRawDataAsModified();
 	anim_seq->MarkPackageDirty();
