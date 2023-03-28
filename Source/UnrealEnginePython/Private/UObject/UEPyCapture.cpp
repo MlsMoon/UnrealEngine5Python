@@ -136,11 +136,11 @@ private:
 		bool bIsDeviceValid = (AudioDevice != nullptr);
 #endif
 
-		if (bIsDeviceValid)
-		{
-			TransientMasterVolume = AudioDevice->GetTransientMasterVolume();
-			AudioDevice->SetTransientMasterVolume(0.0f);
-		}
+		// if (bIsDeviceValid)
+		// {
+		// 	TransientMasterVolume = AudioDevice->GetTransientMasterVolume();
+		// 	AudioDevice->SetTransientMasterVolume(0.0f);
+		// }
 
 		// play at the next tick
 #if ENGINE_MAJOR_VERSION == 5
@@ -361,10 +361,10 @@ private:
 		bool bIsDeviceValid = (AudioDevice != nullptr);
 #endif
 
-		if (bIsDeviceValid)
-		{
-			AudioDevice->SetTransientMasterVolume(TransientMasterVolume);
-		}
+		// if (bIsDeviceValid)
+		// {
+		// 	AudioDevice->SetTransientMasterVolume(TransientMasterVolume);
+		// }
 
 		CurrentCaptureObject->Close();
 		//CurrentCaptureObject->RemoveFromRoot();

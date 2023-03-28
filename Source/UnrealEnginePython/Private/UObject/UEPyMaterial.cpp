@@ -147,34 +147,35 @@ PyObject *py_ue_set_material_static_switch_parameter(ue_PyUObject *self, PyObjec
 		valid = true;
 		FStaticParameterSet staticParameterSet = material_instance->GetStaticParameters();
 
+		
 		bool isExisting = false;
-		for (auto& parameter : staticParameterSet.StaticSwitchParameters)
-		{
-#if !(ENGINE_MAJOR_VERSION == 5 || (ENGINE_MAJOR_VERSION == 4 && ENGINE_MINOR_VERSION >= 19))
-			if (parameter.bOverride && parameter.ParameterName == parameterName)
-#else
-			if (parameter.bOverride && parameter.ParameterInfo.Name == parameterName)
-#endif
-			{
-				parameter.Value = switchValue;
-				isExisting = true;
-				break;
-			}
-		}
+// 		for (auto& parameter : staticParameterSet.StaticSwitchParameters)
+// 		{
+// #if !(ENGINE_MAJOR_VERSION == 5 || (ENGINE_MAJOR_VERSION == 4 && ENGINE_MINOR_VERSION >= 19))
+// 			if (parameter.bOverride && parameter.ParameterName == parameterName)
+// #else
+// 			if (parameter.bOverride && parameter.ParameterInfo.Name == parameterName)
+// #endif
+// 			{
+// 				parameter.Value = switchValue;
+// 				isExisting = true;
+// 				break;
+// 			}
+// 		}
 
-		if (!isExisting)
-		{
-			FStaticSwitchParameter SwitchParameter;
-#if !(ENGINE_MAJOR_VERSION == 5 || (ENGINE_MAJOR_VERSION == 4 && ENGINE_MINOR_VERSION >= 19))
-			SwitchParameter.ParameterName = parameterName;
-#else
-			SwitchParameter.ParameterInfo.Name = parameterName;
-#endif
-			SwitchParameter.Value = switchValue;
-
-			SwitchParameter.bOverride = true;
-			staticParameterSet.StaticSwitchParameters.Add(SwitchParameter);
-		}
+// 		if (!isExisting)
+// 		{
+// 			FStaticSwitchParameter SwitchParameter;
+// #if !(ENGINE_MAJOR_VERSION == 5 || (ENGINE_MAJOR_VERSION == 4 && ENGINE_MINOR_VERSION >= 19))
+// 			SwitchParameter.ParameterName = parameterName;
+// #else
+// 			SwitchParameter.ParameterInfo.Name = parameterName;
+// #endif
+// 			SwitchParameter.Value = switchValue;
+//
+// 			SwitchParameter.bOverride = true;
+// 			staticParameterSet.StaticSwitchParameters.Add(SwitchParameter);
+// 		}
 
 
 		material_instance->UpdateStaticPermutation(staticParameterSet);

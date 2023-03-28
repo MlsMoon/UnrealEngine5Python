@@ -38,7 +38,7 @@
 #else
 #include "Editor/UnrealEd/Public/FbxImporter.h"
 #endif
-#include "Editor/MovieSceneTools/Public/MatineeImportTools.h"
+
 #endif
 
 #include "GameFramework/Actor.h"
@@ -824,7 +824,7 @@ PyObject *py_ue_sequencer_create_folder(ue_PyUObject *self, PyObject * args)
 	else
 	{
 		scene->Modify();
-		scene->GetRootFolders().Add(new_folder);
+//		scene->GetRootFolders().Add(new_folder);
 	}
 
 	Py_RETURN_UOBJECT(new_folder);
